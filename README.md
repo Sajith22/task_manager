@@ -118,7 +118,7 @@ Frontend: http://localhost:4200
 Backend API: http://localhost:3000/api/tasks
 
 📁 Project Structure
-
+```bash
 task_manager/
 ├── Backend/
 │   └── next-backend/
@@ -157,7 +157,7 @@ task_manager/
 ├── database/
 │   └── schema.sql
 └── README.md
-
+```
 ```bash
 🎯 API Endpoints
 Method	Endpoint	Description
