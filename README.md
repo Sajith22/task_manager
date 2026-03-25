@@ -316,8 +316,4 @@ Bootstrap for the UI components
 
 MySQL for the reliable database
 
-### 📸 Screenshots
-Add screenshots of your application here
-
-### 🎥 Demo
-Add a link to a live demo or video walkthrough here
+Made with ❤️ using Angular, Next.js, and MySQL
