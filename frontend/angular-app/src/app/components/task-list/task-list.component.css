@@ -1,0 +1,27 @@
+/* Add any custom styles here */
+.container {
+  max-width: 1200px;
+}
+
+.card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.badge {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+.btn-sm {
+  margin-right: 5px;
+}
+
+.form-control:focus, .form-select:focus {
+  box-shadow: none;
+  border-color: #80bdff;
+}

@@ -1,0 +1,112 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Task Manager</h1>
+  
+  <!-- Add New Task Form -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Add New Task</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <input type="text" 
+                 class="form-control" 
+                 [(ngModel)]="newTask.title" 
+                 placeholder="Task Title" 
+                 name="title"
+                 required>
+        </div>
+        <div class="col-md-5">
+          <input type="text" 
+                 class="form-control" 
+                 [(ngModel)]="newTask.description" 
+                 placeholder="Description" 
+                 name="description">
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="newTask.status">
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-primary" (click)="createTask()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tasks List -->
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h3 class="mb-0">Tasks List</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+             <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Created At</th>
+              <th>Actions</th>
+             </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <!-- Normal View Mode -->
+              <ng-container *ngIf="editingTask?.id !== task.id">
+                <td>{{task.id}}</td>
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>
+                  <span class="badge" [ngClass]="{
+                    'bg-warning': task.status === 'pending',
+                    'bg-info': task.status === 'in-progress',
+                    'bg-success': task.status === 'completed'
+                  }">{{task.status}}</span>
+                </td>
+                <td>{{task.created_at | date:'short'}}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning me-2" (click)="editTask(task)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteTask(task.id!)">Delete</button>
+                </td>
+              </ng-container>
+              
+              <!-- Edit Mode -->
+              <ng-container *ngIf="editingTask?.id === task.id">
+                <td colspan="6">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" [(ngModel)]="editingTask!.title">
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" [(ngModel)]="editingTask!.description">
+                    </div>
+                    <div class="col-md-2">
+                      <select class="form-select" [(ngModel)]="editingTask!.status">
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <button class="btn btn-sm btn-success me-2" (click)="updateTask()">Save</button>
+                      <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+            <tr *ngIf="tasks.length === 0">
+              <td colspan="6" class="text-center">No tasks found. Add your first task!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
